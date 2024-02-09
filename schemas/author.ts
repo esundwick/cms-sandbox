@@ -6,19 +6,24 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
-      title: 'Name',
+      name: 'firstName',
+      title: 'First Name',
       type: 'string',
     }),
     defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
+      name: 'lastName',
+      title: 'Last name',
+      type: 'string'
     }),
+ //   defineField({
+ //     name: 'slug',
+ //     title: 'Slug',
+ //     type: 'slug',
+ //     options: {
+ //       source: 'name',
+ //       maxLength: 96,
+ //     },
+ //   }),
     defineField({
       name: 'image',
       title: 'Image',
@@ -26,6 +31,11 @@ export default defineType({
       options: {
         hotspot: true,
       },
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email address',
+      type: 'string'
     }),
     defineField({
       name: 'bio',
@@ -40,10 +50,16 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'expertiseAreas',
+      title: 'Areas of expertise',
+      type: 'array',
+      of: [{ 'type': 'reference', "to": [{ "type": "tag"}] }]
+    })
   ],
   preview: {
     select: {
-      title: 'name',
+      title: ('lastName'+' , '+'firstName'),
       media: 'image',
     },
   },
